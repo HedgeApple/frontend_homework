@@ -1,4 +1,5 @@
 import Header from './components/Header'
+import WeaponForm from './components/WeaponForm'
 import './style/App.css'
 import {useState} from 'react'
 
@@ -12,6 +13,7 @@ function App() {
   return (
     <main>
       <Header/>
+      <WeaponForm/>
     </main>
   );
 }
