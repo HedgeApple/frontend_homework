@@ -5,3 +5,8 @@ form {
   width:50%;
   margin: auto;
 }
+
+#score {
+  display: flex;
+  justify-content: space-around;
+}
