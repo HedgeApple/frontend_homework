@@ -1,11 +1,16 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-export default function WeaponForm() {
-  return (
-    <Form>
+export default function WeaponForm(props) {
+  
+  function onFight(event) {
+    event.preventDefault();
+    props.handleChoice(event.target.weapon.value);
+  }
 
-      <Form.Group className="mb-3">
+  return (
+    <Form onSubmit={onFight}>
+      <Form.Group className="mb-3" controlId="weapon">
         <Form.Label>Choose Your Weapon</Form.Label>
         <Form.Select>
           <option>Rock</option>
