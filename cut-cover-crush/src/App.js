@@ -1,5 +1,6 @@
 import Header from './components/Header'
 import WeaponForm from './components/WeaponForm'
+import Players from './components/Players'
 import './style/App.css'
 import {useState} from 'react'
 
@@ -29,10 +30,16 @@ function App() {
     <main>
       <Header/>
       <WeaponForm/>
-      <div id="score">
+
+      <div class="flex-around">
         <h3>Wins: {wins}</h3>
         <h3>Draws: {draws}</h3>
         <h3>Loses: {loses}</h3>
+      </div>
+
+      <div class="flex-around">
+        <Players player="You"/>
+        <Players player="The Enemy"/>
       </div>
     </main>
   );
