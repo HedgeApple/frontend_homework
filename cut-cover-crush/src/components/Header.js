@@ -3,7 +3,7 @@ import '../style/Header.css'
 export default function Header() {
   return(
     <header>
-    <h1>CUT -{'>'} COVER -{'>'} CRUSH</h1>
+    <h1>CRUSH -{'>'} COVER -{'>'} CUT</h1>
     </header>
   )
 }
