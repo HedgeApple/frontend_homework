@@ -6,7 +6,8 @@ form {
   margin: auto;
 }
 
-#score {
+.flex-around {
   display: flex;
   justify-content: space-around;
+  padding: 1rem;
 }
