@@ -5,14 +5,7 @@ import {
   faHandScissors,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Game = ({ callback }) => {
-  // const [matchCounter, setMatchCounter] = useState(1);
-  // const [playerWinCount, setPlayerWinCount] = useState(0);
-  // const [opponentWinCount, setOpponentWinCount] = useState(0);
-  // const [drawCount, setDrawCount] = useState(0);
-
-  let matchCounter = 1;
-
+const Game = ({ callback, currentMatch }) => {
   const buttonClicked = (e) => {
     const playerSelection = e.currentTarget.value;
     playRound(playerSelection);
@@ -22,7 +15,7 @@ const Game = ({ callback }) => {
     const opponentSelection = opponentChoice();
     alert(
       "Round #" +
-        matchCounter +
+        currentMatch +
         ": \nYou chose: " +
         playerSelection +
         "\n Opponent chose: " +
@@ -30,30 +23,6 @@ const Game = ({ callback }) => {
     );
 
     const matchWinner = checkMatchWinner(playerSelection, opponentSelection);
-
-    // switch (matchOutcome) {
-    //   case "PLAYER":
-    //     playerWinCount++;
-    //     // setPlayerWinCount(playerWinCount + 1);
-    //     break;
-    //   case "OPPONENT":
-    //     opponentWinCount++;
-    //     // setOpponentWinCount(opponentWinCount + 1);
-    //     break;
-    //   case "DRAW":
-    //     drawCount++;
-    //     // setDrawCount(drawCount + 1);
-    //     break;
-    //   default:
-    //     break;
-    // }
-
-    matchCounter = 0;
-    // setMatchCounter(matchCounter + 1);
-
-    // console.log(playerWinCount, opponentWinCount, drawCount);
-    // console.log(playerWinCount);
-
     callback(matchWinner);
   };
 
@@ -83,32 +52,54 @@ const Game = ({ callback }) => {
   };
 
   return (
-    <div className="col-12 text-center">
+    <div className="col-12" style={{ minWidth: "520px" }}>
       <div className="card border-success mb-3">
-        <div className="card-header">Rock Paper Scissors</div>
         <div className="card-body">
           <div className="form-group mt-3 mb-3">
-            <button
-              className="btn btn-outline-success me-3 rounded-circle p-4"
-              value="Rock"
-              onClick={buttonClicked}
-            >
-              <FontAwesomeIcon size="6x" icon={faHandBackFist} />
-            </button>
-            <button
-              className="btn btn-outline-warning me-3 rounded-circle p-4"
-              value="Paper"
-              onClick={buttonClicked}
-            >
-              <FontAwesomeIcon size="6x" icon={faHand} />
-            </button>
-            <button
-              className="btn btn-outline-info me-3 rounded-circle p-4"
-              value="Scissors"
-              onClick={buttonClicked}
-            >
-              <FontAwesomeIcon size="6x" icon={faHandScissors} />
-            </button>
+            <div className="row justify-content-around">
+              <div className="col-4">
+                <button
+                  className="btn btn-outline-success rounded-circle p-5"
+                  value="Rock"
+                  onClick={buttonClicked}
+                  // style={{ width: "15em", height: "15em" }}
+                >
+                  <FontAwesomeIcon
+                    size="10x"
+                    className="choiceButton"
+                    icon={faHandBackFist}
+                  />
+                </button>
+              </div>
+              <div className="col-4">
+                <button
+                  className="btn btn-outline-warning rounded-circle p-5"
+                  value="Paper"
+                  onClick={buttonClicked}
+                  // style={{ width: "15em", height: "15em" }}
+                >
+                  <FontAwesomeIcon
+                    size="10x"
+                    className="choiceButton"
+                    icon={faHand}
+                  />
+                </button>
+              </div>
+              <div className="col-4">
+                <button
+                  className="btn btn-outline-info rounded-circle p-5"
+                  value="Scissors"
+                  onClick={buttonClicked}
+                  // style={{ width: "15em", height: "15em" }}
+                >
+                  <FontAwesomeIcon
+                    size="10x"
+                    className="choiceButton"
+                    icon={faHandScissors}
+                  />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -5,39 +5,40 @@ import Scoreboard from "./components/Scoreboard.js";
 import { useState } from "react";
 
 const App = () => {
-  // const [matchNumber, setMatchNumber] = useState(1);
-  const [scoreboard, setScoreboard] = useState({
+  const [matchNumber, setMatchNumber] = useState(1);
+  const [scores, setScores] = useState({
     PLAYER: 0,
     OPPONENT: 0,
     DRAW: 0,
   });
 
-  const callback = (matchWinner) => {
-    // console.log(matchWinner);
-    const updatedScore = { ...scoreboard };
+  const updateScores = (matchWinner) => {
+    const updatedScores = { ...scores };
+
     switch (matchWinner) {
       case "PLAYER":
-        updatedScore["PLAYER"] = updatedScore["PLAYER"] + 1;
+        updatedScores["PLAYER"] = updatedScores["PLAYER"] + 1;
         break;
       case "OPPONENT":
-        updatedScore["OPPONENT"] = updatedScore["OPPONENT"] + 1;
+        updatedScores["OPPONENT"] = updatedScores["OPPONENT"] + 1;
         break;
       case "DRAW":
-        updatedScore["DRAW"] = updatedScore["DRAW"] + 1;
+        updatedScores["DRAW"] = updatedScores["DRAW"] + 1;
         break;
       default:
         break;
     }
-    setScoreboard(updatedScore);
-    // console.log(scoreboard);
+
+    setScores(updatedScores);
+    setMatchNumber(matchNumber + 1);
   };
 
   return (
-    <div className="d-flex align-items-center min-vh-100">
+    <div className="d-flex text-center align-items-center min-vh-100">
       <div className="container">
         <div className="row">
-          <Scoreboard scores={scoreboard} />
-          <Game callback={callback} />
+          <Scoreboard scores={scores} />
+          <Game callback={updateScores} currentMatch={matchNumber} />
         </div>
       </div>
     </div>
