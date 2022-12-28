@@ -3,9 +3,12 @@ import "./App.css";
 import Game from "./components/Game.js";
 import Scoreboard from "./components/Scoreboard.js";
 import { useState } from "react";
+import InfoPanel from "./components/InfoPanel";
 
 const App = () => {
-  const [matchNumber, setMatchNumber] = useState(1);
+  const [matchNumber, setMatchNumber] = useState(0);
+  const [playerSelection, setPlayerSelection] = useState("");
+  const [opponentSelection, setOpponentSelection] = useState("");
   const [scores, setScores] = useState({
     PLAYER: 0,
     OPPONENT: 0,
@@ -30,6 +33,11 @@ const App = () => {
     }
 
     setScores(updatedScores);
+  };
+
+  const updateInfo = (playerSelection, opponentSelection) => {
+    setPlayerSelection(playerSelection);
+    setOpponentSelection(opponentSelection);
     setMatchNumber(matchNumber + 1);
   };
 
@@ -38,7 +46,12 @@ const App = () => {
       <div className="container">
         <div className="row">
           <Scoreboard scores={scores} />
-          <Game callback={updateScores} currentMatch={matchNumber} />
+          <InfoPanel
+            matchNumber={matchNumber}
+            playerSelection={playerSelection}
+            opponentSelection={opponentSelection}
+          />
+          <Game score_callback={updateScores} info_callback={updateInfo} />
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ import {
   faHandScissors,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Game = ({ callback, currentMatch }) => {
+const Game = ({ score_callback, info_callback }) => {
   const buttonClicked = (e) => {
     const playerSelection = e.currentTarget.value;
     playRound(playerSelection);
@@ -13,17 +13,9 @@ const Game = ({ callback, currentMatch }) => {
 
   const playRound = (playerSelection) => {
     const opponentSelection = opponentChoice();
-    alert(
-      "Round #" +
-        currentMatch +
-        ": \nYou chose: " +
-        playerSelection +
-        "\n Opponent chose: " +
-        opponentSelection
-    );
-
     const matchWinner = checkMatchWinner(playerSelection, opponentSelection);
-    callback(matchWinner);
+    score_callback(matchWinner);
+    info_callback(playerSelection, opponentSelection);
   };
 
   const opponentChoice = () => {
@@ -53,7 +45,7 @@ const Game = ({ callback, currentMatch }) => {
 
   return (
     <div className="col-12" style={{ minWidth: "520px" }}>
-      <div className="card border-success mb-3">
+      <div className="card border-warning mb-3">
         <div className="card-body">
           <div className="form-group mt-3 mb-3">
             <div className="row justify-content-around">
@@ -62,7 +54,6 @@ const Game = ({ callback, currentMatch }) => {
                   className="btn btn-outline-success rounded-circle p-5"
                   value="Rock"
                   onClick={buttonClicked}
-                  // style={{ width: "15em", height: "15em" }}
                 >
                   <FontAwesomeIcon
                     size="10x"
@@ -76,7 +67,6 @@ const Game = ({ callback, currentMatch }) => {
                   className="btn btn-outline-warning rounded-circle p-5"
                   value="Paper"
                   onClick={buttonClicked}
-                  // style={{ width: "15em", height: "15em" }}
                 >
                   <FontAwesomeIcon
                     size="10x"
@@ -90,7 +80,6 @@ const Game = ({ callback, currentMatch }) => {
                   className="btn btn-outline-info rounded-circle p-5"
                   value="Scissors"
                   onClick={buttonClicked}
-                  // style={{ width: "15em", height: "15em" }}
                 >
                   <FontAwesomeIcon
                     size="10x"
