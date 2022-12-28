@@ -1,14 +1,17 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHandBackFist } from "@fortawesome/free-solid-svg-icons";
-import { faHandScissors } from "@fortawesome/free-solid-svg-icons";
-import { faHand } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import {
+  faHand,
+  faHandBackFist,
+  faHandScissors,
+} from "@fortawesome/free-solid-svg-icons";
 
-const Game = (props) => {
-  const [counter, setCounter] = useState(1);
-  const [playerWinCount, setPlayerWinCount] = useState(0);
-  const [opponentWinCount, setOpponentWinCount] = useState(0);
-  const [drawCount, setDrawCount] = useState(0);
+const Game = ({ callback }) => {
+  // const [matchCounter, setMatchCounter] = useState(1);
+  // const [playerWinCount, setPlayerWinCount] = useState(0);
+  // const [opponentWinCount, setOpponentWinCount] = useState(0);
+  // const [drawCount, setDrawCount] = useState(0);
+
+  let matchCounter = 1;
 
   const buttonClicked = (e) => {
     const playerSelection = e.currentTarget.value;
@@ -19,29 +22,39 @@ const Game = (props) => {
     const opponentSelection = opponentChoice();
     alert(
       "Round #" +
-        counter +
+        matchCounter +
         ": \nYou chose: " +
         playerSelection +
         "\n Opponent chose: " +
         opponentSelection
     );
 
-    const matchOutcome = checkMatchOutcome(playerSelection, opponentSelection);
-    switch (matchOutcome) {
-      case "PLAYER":
-        setPlayerWinCount(playerWinCount + 1);
-        break;
-      case "OPPONENT":
-        setOpponentWinCount(opponentWinCount + 1);
-        break;
-      case "DRAW":
-        setDrawCount(drawCount + 1);
-        break;
-      default:
-        break;
-    }
+    const matchWinner = checkMatchWinner(playerSelection, opponentSelection);
 
-    setCounter(counter + 1);
+    // switch (matchOutcome) {
+    //   case "PLAYER":
+    //     playerWinCount++;
+    //     // setPlayerWinCount(playerWinCount + 1);
+    //     break;
+    //   case "OPPONENT":
+    //     opponentWinCount++;
+    //     // setOpponentWinCount(opponentWinCount + 1);
+    //     break;
+    //   case "DRAW":
+    //     drawCount++;
+    //     // setDrawCount(drawCount + 1);
+    //     break;
+    //   default:
+    //     break;
+    // }
+
+    matchCounter = 0;
+    // setMatchCounter(matchCounter + 1);
+
+    // console.log(playerWinCount, opponentWinCount, drawCount);
+    // console.log(playerWinCount);
+
+    callback(matchWinner);
   };
 
   const opponentChoice = () => {
@@ -50,7 +63,7 @@ const Game = (props) => {
     return choices[random_index];
   };
 
-  const checkMatchOutcome = (playerChoice, opponentChoice) => {
+  const checkMatchWinner = (playerChoice, opponentChoice) => {
     const winningCombinations = {
       ROCK: "SCISSORS",
       PAPER: "ROCK",
@@ -71,12 +84,6 @@ const Game = (props) => {
 
   return (
     <div className="col-12 text-center">
-      <div className="mb-5" id="scoreboard">
-        <h1 className="mb-3">Scoreboard</h1>
-        <h2>Player: {playerWinCount}</h2>
-        <h2>Opponent: {opponentWinCount}</h2>
-        <h2>Draw: {drawCount}</h2>
-      </div>
       <div className="card border-success mb-3">
         <div className="card-header">Rock Paper Scissors</div>
         <div className="card-body">
