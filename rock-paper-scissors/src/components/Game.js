@@ -44,8 +44,8 @@ const Game = ({ score_callback, info_callback }) => {
   };
 
   return (
-    <div className="col-12" style={{ minWidth: "520px" }}>
-      <div className="card border-warning mb-3">
+    <div className="col-12">
+      <div className="card border-danger mb-3">
         <div className="card-body">
           <div className="form-group mt-3 mb-3">
             <div className="row justify-content-around">
@@ -56,7 +56,6 @@ const Game = ({ score_callback, info_callback }) => {
                   onClick={buttonClicked}
                 >
                   <FontAwesomeIcon
-                    size="10x"
                     className="choiceButton"
                     icon={faHandBackFist}
                   />
@@ -68,11 +67,7 @@ const Game = ({ score_callback, info_callback }) => {
                   value="Paper"
                   onClick={buttonClicked}
                 >
-                  <FontAwesomeIcon
-                    size="10x"
-                    className="choiceButton"
-                    icon={faHand}
-                  />
+                  <FontAwesomeIcon className="choiceButton" icon={faHand} />
                 </button>
               </div>
               <div className="col-4">
@@ -82,7 +77,6 @@ const Game = ({ score_callback, info_callback }) => {
                   onClick={buttonClicked}
                 >
                   <FontAwesomeIcon
-                    size="10x"
                     className="choiceButton"
                     icon={faHandScissors}
                   />

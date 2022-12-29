@@ -1,9 +1,9 @@
 import "./bootstrap.min.css";
 import "./App.css";
 import Game from "./components/Game.js";
+import InfoPanel from "./components/InfoPanel";
 import Scoreboard from "./components/Scoreboard.js";
 import { useState } from "react";
-import InfoPanel from "./components/InfoPanel";
 
 const App = () => {
   const [matchNumber, setMatchNumber] = useState(0);
@@ -42,7 +42,10 @@ const App = () => {
   };
 
   return (
-    <div className="d-flex text-center align-items-center min-vh-100">
+    <div
+      className="d-flex text-center min-vh-100 mt-5"
+      style={{ minWidth: "500px" }}
+    >
       <div className="container">
         <div className="row">
           <Scoreboard scores={scores} />

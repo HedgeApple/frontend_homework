@@ -1,5 +1,5 @@
 const InfoPanel = ({ matchNumber, playerSelection, opponentSelection }) => (
-  <div className="info mb-5" style={{ height: "105px", minWidth: "520px" }}>
+  <div className="info mb-5">
     {playerSelection !== "" && (
       <div>
         <h3>Round #{matchNumber}</h3>
